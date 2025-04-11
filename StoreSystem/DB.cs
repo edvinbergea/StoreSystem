@@ -12,10 +12,14 @@ namespace StoreSystem
 {
     internal class DB
     {
-        public List<Product> productList;
-        
+        public List<Book> bookList;
+        public List<Game> gameList;
+        public List<Movie> movieList;
+
         public DB() {
-            productList = new List<Product>();
+            bookList = new List<Book>();
+            gameList = new List<Game>();
+            movieList = new List<Movie>();
             FillList();
         }
 
@@ -34,15 +38,19 @@ namespace StoreSystem
                         Product product;
                         switch (type)
                         {
-                            case ("book"): product = new Book(Int32.Parse(row.id), row.name, Int32.Parse(row.price), row.author, row.genre, row.format, row.language, Int32.Parse(row.quantity), row.type); break;
-                            case ("game"): product = new Game(Int32.Parse(row.id), row.name, Int32.Parse(row.price), row.platform, Int32.Parse(row.quantity), row.type); break;
-                            case ("movie"): product = new Movie(Int32.Parse(row.id), row.name, Int32.Parse(row.price), row.format, row.play_time, Int32.Parse(row.quantity), row.type); break;
-                            default: product = null; break;
+                            case ("book"): 
+                                product = new Book(Int32.Parse(row.id), row.name, Int32.Parse(row.price), row.author, row.genre, row.format, row.language, Int32.Parse(row.quantity), row.type);
+                                bookList.Add((Book)product);
+                                break;
+                            case ("game"): 
+                                product = new Game(Int32.Parse(row.id), row.name, Int32.Parse(row.price), row.platform, Int32.Parse(row.quantity), row.type); 
+                                gameList.Add((Game)product);
+                                break;
+                            case ("movie"): 
+                                product = new Movie(Int32.Parse(row.id), row.name, Int32.Parse(row.price), row.format, row.play_time, Int32.Parse(row.quantity), row.type); 
+                                movieList.Add((Movie)product);
+                                break;
                         };
-                        if (productList != null)
-                        {
-                            productList.Add(product);
-                        }
                     }
                 }
             }
