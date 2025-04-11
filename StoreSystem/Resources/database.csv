@@ -1,0 +1,16 @@
+name,price,author,genre,format,language,platform,play_time,quantity,type,id
+Bello Gallico et Civili,449,Julius Caesar,Historia,Inbunden,Latin,null,null,0,book,0
+How to Read a Book,149,Mortimer J. Adler,Kursliteratur,Pocket,null,null,null,0,book,1
+Moby Dick,49,Herman Melville,Äventyr,Pocket,null,null,null,0,book,2
+Great Gatsby,79,F. Scott Fitzgerald,Noir,E-Bok,null,null,null,0,book,3
+House of Leaves,49,Mark Z. Danielewski,Skräck,null,null,null,null,0,book,4
+Elden Ring,599,null,null,null,null,Playstation 5,null,0,game,5
+Demon's Souls,499,null,null,null,null,Playstation 5,null,0,game,6
+Microsoft Flight Simulator,499,null,null,null,null,PC,null,0,game,7
+Planescape Torment,99,null,null,null,null,PC,null,0,game,8
+Disco Elysium,399,null,null,null,null,PC,null,0,game,9
+Nyckeln till frihet,99,null,null,DVD,null,null,142 min,0,movie,10
+Gudfadern,99,null,null,DVD,null,null,152 min,0,movie,11
+Konungens återkomst,199,null,null,Blu-Ray,null,null,154 min,0,movie,12
+Pulp fiction,199,null,null,Blu-Ray,null,null,null,0,movie,13
+Schindlers list,99,null,null,DVD,null,null,null,0,movie,14

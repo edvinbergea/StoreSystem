@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace StoreSystem
 {
-    public partial class Form1 : Form
+    public partial class ProductItem : UserControl
     {
-        public Form1()
+        public ProductItem()
         {
             InitializeComponent();
         }
