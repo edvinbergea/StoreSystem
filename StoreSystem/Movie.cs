@@ -11,7 +11,7 @@ namespace StoreSystem
         public string format { get; set; }
         public string playtime { get; set; }
 
-        public Movie(int Id, string Name, int Price, string Format, string Playtime, int Quantity, string Type)
+        public Movie(string Id, string Name, string Price, string Format, string Playtime, string Quantity, string Type)
         {
             id = Id;
             name = Name;

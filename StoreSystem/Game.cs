@@ -10,7 +10,7 @@ namespace StoreSystem
     {
         public string platform { get; set; }
 
-        public Game(int Id, string Name, int Price, string Platform, int Quantity, string Type)
+        public Game(string Id, string Name, string Price, string Platform, string Quantity, string Type)
         {
             id = Id;
             name = Name;

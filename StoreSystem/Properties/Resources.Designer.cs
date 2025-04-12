@@ -62,16 +62,26 @@ namespace StoreSystem.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to name,price,author,genre,format,language,platform,play_time,quantity,type,id
-        ///Bello Gallico et Civili,449,Julius Caesar,Historia,Inbunden,Latin,null,null,0,book,0
-        ///How to Read a Book,149,Mortimer J. Adler,Kursliteratur,Pocket,null,null,null,0,book,1
-        ///Moby Dick,49,Herman Melville,Äventyr,Pocket,null,null,null,0,book,2
-        ///Great Gatsby,79,F. Scott Fitzgerald,Noir,E-Bok,null,null,null,0,book,3
-        ///House of Leaves,49,Mark Z. Danielewski,Skräck,null,null,null,null,0,book,4
-        ///Elden Ring,599,null,null,null,null,Playstatio [rest of string was truncated]&quot;;.
+        ///Bello Gallico et Civili,449,Julius Caesar,Historia,Inbunden,Latin, , ,0,book,0
+        ///How to Read a Book,149,Mortimer J. Adler,Kursliteratur,Pocket, , , ,0,book,1
+        ///Moby Dick,49,Herman Melville,Äventyr,Pocket, , , ,0,book,2
+        ///Great Gatsby,79,F. Scott Fitzgerald,Noir,E-Bok, , , ,0,book,3
+        ///House of Leaves,49,Mark Z. Danielewski,Skräck, , , , ,0,book,4
+        ///Elden Ring,599, , , , ,Playstation 5, ,0,game,5
+        ///Demon&apos;s Souls,499, , , , ,Playstation 5,  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string database {
             get {
                 return ResourceManager.GetString("database", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string test {
+            get {
+                return ResourceManager.GetString("test", resourceCulture);
             }
         }
     }
