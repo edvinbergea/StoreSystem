@@ -47,35 +47,84 @@ namespace StoreSystem
             GamesDataGrid.CellLeave += DataGridView_CellLeave;
             MoviesDataGrid.CellLeave += DataGridView_CellLeave;
 
-            BookDeleteButton.Click += Delete_click;
-            GameDeleteButton.Click += Delete_click;
-            MovieDeleteButton.Click += Delete_click;
+            BookDeleteButton.Click += BookDelete_click;
+            GameDeleteButton.Click += GameDelete_click;
+            MovieDeleteButton.Click += MovieDelete_click;
+
+            AddDeliveryButton.Click += AddDeliveryButton_Click;
 
             this.FormClosing += MainForm_FormClosing;
         }
- /*--------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------------------------*/
+        private void AddDeliveryButton_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+/*--------------------------------------------------------------------------------------------------------------------*/
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (database.InvalidExcist())
+            {
+                DialogResult result = MessageBox.Show(
+                "Invalid rows will be deleted!",
+                "Confirm",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Warning
+                );
+                if (result == DialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+            }
             database.SaveData();
         }
 
 /*--------------------------------------------------------------------------------------------------------------------*/
-        private void Delete_click(object sender, EventArgs e)
+        private void BookDelete_click(object sender, EventArgs e)
         {
-            DataGridView dgv = sender as DataGridView;
             DialogResult result = MessageBox.Show(
-            $"Are you sure you want to delete the item with id: {dgv.CurrentRow.Cells["id"].Value}?",
+            $"Are you sure you want to delete the item with id: {BooksDataGrid.CurrentRow.Cells["id"].Value}?",
             "Confirm Deletion",
             MessageBoxButtons.YesNo,
             MessageBoxIcon.Warning
             );
             if(result == DialogResult.Yes) {
-                database.RemoveBook(dgv.CurrentRow.Cells["id"].Value.ToString());
+                database.RemoveBook(BooksDataGrid.CurrentRow.Cells["id"].Value.ToString());
+                ResizeGrid();
+            }
+        }
+        private void GameDelete_click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+            $"Are you sure you want to delete the item with id: {GamesDataGrid.CurrentRow.Cells["id"].Value}?",
+            "Confirm Deletion",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Warning
+            );
+            if (result == DialogResult.Yes)
+            {
+                database.RemoveGame(GamesDataGrid.CurrentRow.Cells["id"].Value.ToString());
+                ResizeGrid();
+            }
+        }
+        private void MovieDelete_click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+            $"Are you sure you want to delete the item with id: {MoviesDataGrid.CurrentRow.Cells["id"].Value}?",
+            "Confirm Deletion",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Warning
+            );
+            if (result == DialogResult.Yes)
+            {
+                database.RemoveMovie(MoviesDataGrid.CurrentRow.Cells["id"].Value.ToString());
                 ResizeGrid();
             }
         }
 
-/*--------------------------------------------------------------------------------------------------------------------*/
+        /*--------------------------------------------------------------------------------------------------------------------*/
 
         private void DataGridView_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
@@ -94,8 +143,9 @@ namespace StoreSystem
 
             var row = dgv.Rows[e.RowIndex];
             bool res = database.Validate(row.Cells);
-            switch (Convert.ToString(row.Cells["id"].Value)){
-                case ("book"): database.bookList.FirstOrDefault(b => b.id == Convert.ToString(row.Cells["id"].Value)).isValid = res;  break;
+            Console.WriteLine(Convert.ToString(row.Cells["id"].Value));
+            switch (Convert.ToString(row.Cells["type"].Value)){
+                case ("book"): database.bookList.FirstOrDefault(b => b.id == Convert.ToString(row.Cells["id"].Value)).isValid = res; Console.WriteLine("inne"); break;
                 case ("game"): database.gameList.FirstOrDefault(b => b.id == Convert.ToString(row.Cells["id"].Value)).isValid = res; break;
                 case ("movie"): database.movieList.FirstOrDefault(b => b.id == Convert.ToString(row.Cells["id"].Value)).isValid = res; break;
             }
@@ -123,6 +173,10 @@ namespace StoreSystem
                 }
                 else dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = previousId;
             }
+            else if (e.ColumnIndex == dgv.Columns["playtime"].Index && !String.IsNullOrWhiteSpace(Convert.ToString(dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value)))
+            {
+                dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value += " min";
+            }
         }
 /*--------------------------------------------------------------------------------------------------------------------*/
         private void DataGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -143,6 +197,12 @@ namespace StoreSystem
                 {
                     tb.KeyPress += NumericTextBox_KeyPress;
                     previousId = Int32.Parse(tb.Text);
+                }
+                else if(dgv.CurrentCell.ColumnIndex == dgv.Columns["playtime"].Index)
+                {
+                    tb.KeyPress += NumericTextBox_KeyPress;
+                    var substrings = tb.Text.Split(' ');
+                    tb.Text = substrings[0];
                 }
             }
         }
@@ -256,6 +316,11 @@ namespace StoreSystem
             BookPanel.Height = totalHeightBooks + margin;
             GamePanel.Height = totalHeightGames +margin;
             MoviePanel.Height = totalHeightMovies +margin;
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

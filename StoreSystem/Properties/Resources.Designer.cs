@@ -61,14 +61,14 @@ namespace StoreSystem.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to name,price,author,genre,format,language,platform,play_time,quantity,type,id
-        ///Bello Gallico et Civili,449,Julius Caesar,Historia,Inbunden,Latin, , ,0,book,0
-        ///How to Read a Book,149,Mortimer J. Adler,Kursliteratur,Pocket, , , ,0,book,1
-        ///Moby Dick,49,Herman Melville,Äventyr,Pocket, , , ,0,book,2
-        ///Great Gatsby,79,F. Scott Fitzgerald,Noir,E-Bok, , , ,0,book,3
-        ///House of Leaves,49,Mark Z. Danielewski,Skräck, , , , ,0,book,4
-        ///Elden Ring,599, , , , ,Playstation 5, ,0,game,5
-        ///Demon&apos;s Souls,499, , , , ,Playstation 5,  [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to name,price,author,genre,format,language,platform,playtime,quantity,type,id
+        ///Bello Gallico et Civili,449,Julius Caesar,Historia,Inbunden,Latin,&quot; &quot;,&quot; &quot;,0,book,0
+        ///How to Read a Book,149,Mortimer J. Adler,Kursliteratur,Pocket,&quot; &quot;,&quot; &quot;,&quot; &quot;,0,book,1
+        ///Moby Dick,49,Herman Melville,Äventyr,Pocket,&quot; &quot;,&quot; &quot;,&quot; &quot;,0,book,2
+        ///Great Gatsby,79,F. Scott Fitzgerald,Noir,E-Bok,&quot; &quot;,&quot; &quot;,&quot; &quot;,0,book,3
+        ///House of Leaves,49,Mark Z. Danielewski,Skräck,&quot; &quot;,&quot; &quot;,&quot; &quot;,&quot; &quot;,0,book,4
+        ///Test 1,999,,,,,&quot; &quot;,&quot; &quot;,0,book,15
+        ///test 2,888,,,,,&quot; &quot;,&quot; &quot;,0,bo [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string database {
             get {

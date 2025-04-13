@@ -17,7 +17,7 @@ namespace StoreSystem
         public BindingList<Book> bookList;
         public BindingList<Game> gameList;
         public BindingList<Movie> movieList;
-        public HashSet<int> occupiedIds;   
+        public HashSet<int> occupiedIds;
 
         public int uniqueId = 0;
 
@@ -32,15 +32,47 @@ namespace StoreSystem
 
         public void SaveData()
         {
-            using (var writer = new StreamWriter("..\\..\\Resources\\test.csv"))
+            using (var writer = new StreamWriter("..\\..\\Resources\\database.csv"))
             {
                 using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
                 {
-                    csv.WriteRecords(bookList);
-                    csv.WriteRecords(gameList);
-                    csv.WriteRecords(movieList);
+                    csv.Context.RegisterClassMap<UnifiedMap>();
+                    csv.WriteRecords(ConvertLists());
                 }
             }
+        }
+
+        public bool InvalidExcist()
+        {
+            foreach (var item in bookList)
+            {
+                if (!item.isValid) return true;
+            }
+            foreach (var item in gameList)
+            {
+                if (!item.isValid) return true;
+            }
+            foreach (var item in movieList)
+            {
+                if (!item.isValid) return true;
+            }
+            return false;
+        }
+
+        private List<UnifiedProd> ConvertLists(){
+            List<UnifiedProd> unifiedList = new List<UnifiedProd>();
+            foreach (var item in bookList) { 
+                if(item.isValid) unifiedList.Add(new UnifiedProd(item.id, item.name, item.price, item.author, item.genre, item.format, item.language, " ", " ",item.quantity, item.type));
+            }
+            foreach (var item in gameList)
+            {
+                if (item.isValid) unifiedList.Add(new UnifiedProd(item.id, item.name, item.price, " ", " ", " ", " ", item.platform, " ", item.quantity, item.type));
+            }
+            foreach (var item in movieList)
+            {
+                if (item.isValid) unifiedList.Add(new UnifiedProd(item.id, item.name, item.price, " ", " ", item.format, " ", " ", item.playtime, item.quantity, item.type));
+            }
+            return unifiedList;
         }
 
         public void AppendBook(Book book)
@@ -144,7 +176,7 @@ namespace StoreSystem
                                 gameList.Add((Game)product);
                                 break;
                             case ("movie"): 
-                                product = new Movie(row.id, row.name, row.price, row.format, row.play_time, row.quantity, row.type); 
+                                product = new Movie(row.id, row.name, row.price, row.format, row.playtime, row.quantity, row.type); 
                                 movieList.Add((Movie)product);
                                 break;
                         };

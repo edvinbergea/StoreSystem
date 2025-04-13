@@ -38,20 +38,23 @@
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.MovieAddButton = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.MovieDeleteButton = new System.Windows.Forms.Button();
             this.GamePanel = new System.Windows.Forms.Panel();
             this.GamesDataGrid = new System.Windows.Forms.DataGridView();
             this.panel4 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
             this.GameAddButton = new System.Windows.Forms.Button();
+            this.GameDeleteButton = new System.Windows.Forms.Button();
             this.BookPanel = new System.Windows.Forms.Panel();
             this.BooksDataGrid = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.BookAddButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.BookDeleteButton = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.AddDeliveryButton = new System.Windows.Forms.ToolStripButton();
             this.Kassa = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -66,9 +69,9 @@
             this.TotalPriceLabel = new System.Windows.Forms.Label();
             this.BuyButton = new System.Windows.Forms.Button();
             this.CartPanel = new System.Windows.Forms.Panel();
-            this.MovieDeleteButton = new System.Windows.Forms.Button();
-            this.GameDeleteButton = new System.Windows.Forms.Button();
-            this.BookDeleteButton = new System.Windows.Forms.Button();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.tabControl1.SuspendLayout();
             this.Lager.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -216,6 +219,16 @@
             this.label5.Text = "Filmer";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // MovieDeleteButton
+            // 
+            this.MovieDeleteButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MovieDeleteButton.Location = new System.Drawing.Point(921, 3);
+            this.MovieDeleteButton.Name = "MovieDeleteButton";
+            this.MovieDeleteButton.Size = new System.Drawing.Size(74, 24);
+            this.MovieDeleteButton.TabIndex = 13;
+            this.MovieDeleteButton.Text = "Ta bort";
+            this.MovieDeleteButton.UseVisualStyleBackColor = true;
+            // 
             // GamePanel
             // 
             this.GamePanel.Controls.Add(this.GamesDataGrid);
@@ -290,6 +303,16 @@
             this.GameAddButton.TabIndex = 7;
             this.GameAddButton.Text = "Lägg till";
             this.GameAddButton.UseVisualStyleBackColor = true;
+            // 
+            // GameDeleteButton
+            // 
+            this.GameDeleteButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GameDeleteButton.Location = new System.Drawing.Point(921, 3);
+            this.GameDeleteButton.Name = "GameDeleteButton";
+            this.GameDeleteButton.Size = new System.Drawing.Size(74, 24);
+            this.GameDeleteButton.TabIndex = 8;
+            this.GameDeleteButton.Text = "Ta bort";
+            this.GameDeleteButton.UseVisualStyleBackColor = true;
             // 
             // BookPanel
             // 
@@ -367,25 +390,35 @@
             this.label3.Text = "Böcker";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // BookDeleteButton
+            // 
+            this.BookDeleteButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BookDeleteButton.Location = new System.Drawing.Point(921, 3);
+            this.BookDeleteButton.Name = "BookDeleteButton";
+            this.BookDeleteButton.Size = new System.Drawing.Size(74, 24);
+            this.BookDeleteButton.TabIndex = 7;
+            this.BookDeleteButton.Text = "Ta bort";
+            this.BookDeleteButton.UseVisualStyleBackColor = true;
+            // 
             // toolStrip1
             // 
             this.toolStrip1.GripMargin = new System.Windows.Forms.Padding(5);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton3});
+            this.AddDeliveryButton});
             this.toolStrip1.Location = new System.Drawing.Point(3, 3);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(998, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripButton3
+            // AddDeliveryButton
             // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(99, 22);
-            this.toolStripButton3.Text = "Lägg till leverans";
+            this.AddDeliveryButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.AddDeliveryButton.Image = ((System.Drawing.Image)(resources.GetObject("AddDeliveryButton.Image")));
+            this.AddDeliveryButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.AddDeliveryButton.Name = "AddDeliveryButton";
+            this.AddDeliveryButton.Size = new System.Drawing.Size(99, 22);
+            this.AddDeliveryButton.Text = "Lägg till leverans";
             // 
             // Kassa
             // 
@@ -575,35 +608,20 @@
             this.CartPanel.Size = new System.Drawing.Size(285, 421);
             this.CartPanel.TabIndex = 1;
             // 
-            // MovieDeleteButton
+            // toolStripButton3
             // 
-            this.MovieDeleteButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MovieDeleteButton.Location = new System.Drawing.Point(921, 3);
-            this.MovieDeleteButton.Name = "MovieDeleteButton";
-            this.MovieDeleteButton.Size = new System.Drawing.Size(74, 24);
-            this.MovieDeleteButton.TabIndex = 13;
-            this.MovieDeleteButton.Text = "Ta bort";
-            this.MovieDeleteButton.UseVisualStyleBackColor = true;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(23, 23);
             // 
-            // GameDeleteButton
+            // toolStripButton1
             // 
-            this.GameDeleteButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GameDeleteButton.Location = new System.Drawing.Point(921, 3);
-            this.GameDeleteButton.Name = "GameDeleteButton";
-            this.GameDeleteButton.Size = new System.Drawing.Size(74, 24);
-            this.GameDeleteButton.TabIndex = 8;
-            this.GameDeleteButton.Text = "Ta bort";
-            this.GameDeleteButton.UseVisualStyleBackColor = true;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 23);
             // 
-            // BookDeleteButton
+            // toolStripButton2
             // 
-            this.BookDeleteButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BookDeleteButton.Location = new System.Drawing.Point(921, 3);
-            this.BookDeleteButton.Name = "BookDeleteButton";
-            this.BookDeleteButton.Size = new System.Drawing.Size(74, 24);
-            this.BookDeleteButton.TabIndex = 7;
-            this.BookDeleteButton.Text = "Ta bort";
-            this.BookDeleteButton.UseVisualStyleBackColor = true;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(23, 23);
             // 
             // MainForm
             // 
@@ -695,6 +713,9 @@
         private System.Windows.Forms.Button MovieDeleteButton;
         private System.Windows.Forms.Button GameDeleteButton;
         private System.Windows.Forms.Button BookDeleteButton;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton AddDeliveryButton;
     }
 }
 
