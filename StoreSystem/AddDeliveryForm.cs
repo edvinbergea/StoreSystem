@@ -18,8 +18,9 @@ namespace StoreSystem
         {
             this.prodList = prodList;
             InitializeComponent();
-            PopulateList();
             itemList = new List<ListItemAddDelivery>();
+            PopulateList();
+            
 
             AddButton.Click += AddButton_Click;
             CancelButton.Click += CancelButton_Click;

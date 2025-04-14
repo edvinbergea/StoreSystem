@@ -202,11 +202,14 @@ namespace StoreSystem
                     tb.KeyPress += NumericTextBox_KeyPress;
                     previousId = Int32.Parse(tb.Text);
                 }
-                else if(dgv.CurrentCell.ColumnIndex == dgv.Columns["playtime"].Index)
+                else if(dgv.Columns["playtime"] != null)
                 {
-                    tb.KeyPress += NumericTextBox_KeyPress;
-                    var substrings = tb.Text.Split(' ');
-                    tb.Text = substrings[0];
+                    if (dgv.CurrentCell.ColumnIndex == dgv.Columns["playtime"].Index)
+                    {
+                        tb.KeyPress += NumericTextBox_KeyPress;
+                        var substrings = tb.Text.Split(' ');
+                        tb.Text = substrings[0];
+                    }
                 }
             }
         }
