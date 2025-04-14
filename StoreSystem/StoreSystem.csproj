@@ -71,11 +71,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddProductForm.cs">
+    <Compile Include="AddDeliveryForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddProductForm.Designer.cs">
-      <DependentUpon>AddProductForm.cs</DependentUpon>
+    <Compile Include="AddDeliveryForm.Designer.cs">
+      <DependentUpon>AddDeliveryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Book.cs" />
     <Compile Include="CartItem.cs">
@@ -86,6 +86,12 @@
     </Compile>
     <Compile Include="DB.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="ListItemAddDelivery.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ListItemAddDelivery.Designer.cs">
+      <DependentUpon>ListItemAddDelivery.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,11 +110,14 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnifiedProd.cs" />
-    <EmbeddedResource Include="AddProductForm.resx">
-      <DependentUpon>AddProductForm.cs</DependentUpon>
+    <EmbeddedResource Include="AddDeliveryForm.resx">
+      <DependentUpon>AddDeliveryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CartItem.resx">
       <DependentUpon>CartItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListItemAddDelivery.resx">
+      <DependentUpon>ListItemAddDelivery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

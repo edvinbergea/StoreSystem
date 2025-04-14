@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StoreSystem
 {
-    internal class UnifiedProd
+    public class UnifiedProd
     {
         public string name { get; set; }
         public string price { get; set; }

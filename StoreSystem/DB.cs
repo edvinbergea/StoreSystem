@@ -59,7 +59,7 @@ namespace StoreSystem
             return false;
         }
 
-        private List<UnifiedProd> ConvertLists(){
+        public List<UnifiedProd> ConvertLists(){
             List<UnifiedProd> unifiedList = new List<UnifiedProd>();
             foreach (var item in bookList) { 
                 if(item.isValid) unifiedList.Add(new UnifiedProd(item.id, item.name, item.price, item.author, item.genre, item.format, item.language, " ", " ",item.quantity, item.type));

@@ -58,7 +58,9 @@ namespace StoreSystem
 /*--------------------------------------------------------------------------------------------------------------------*/
         private void AddDeliveryButton_Click(object sender, EventArgs e)
         {
-            
+            AddDeliveryForm deliveryPopup = new AddDeliveryForm(database.ConvertLists());
+            var res = deliveryPopup.ShowDialog();
+            if (res == AcceptButton.DialogResult) { }
         }
 
 /*--------------------------------------------------------------------------------------------------------------------*/
