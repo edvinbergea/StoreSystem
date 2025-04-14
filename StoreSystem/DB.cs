@@ -189,7 +189,32 @@ namespace StoreSystem
 
         internal void AddDelivery(List<ListItemAddDelivery> itemList)
         {
-            
+            foreach (ListItemAddDelivery item in itemList) {
+                switch (item.itemType)
+                {
+                    case ("book"):
+                        Book book = bookList.FirstOrDefault(b => b.id == item.GetId());
+                        if (book != null)
+                        {
+                            book.quantity = (Int32.Parse(book.quantity) + Int32.Parse(item.GetCount())).ToString();
+                        }
+                        break;
+                    case ("game"):
+                        Game game = gameList.FirstOrDefault(g => g.id == item.GetId());
+                        if (game != null)
+                        {
+                            game.quantity = (Int32.Parse(game.quantity) + Int32.Parse(item.GetCount())).ToString();
+                        }
+                        break;
+                    case ("movie"):
+                        Movie movie = movieList.FirstOrDefault(m => m.id == item.GetId());
+                        if (movie != null)
+                        {
+                            movie.quantity = (Int32.Parse(movie.quantity) + Int32.Parse(item.GetCount())).ToString();
+                        }
+                        break;
+                };
+            }
         }
     }
 }

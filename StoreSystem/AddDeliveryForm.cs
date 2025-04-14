@@ -47,6 +47,7 @@ namespace StoreSystem
                 itemList.Add(listItem);
                 listItem.SetName(item.name);
                 listItem.SetId(item.id);
+                listItem.itemType = item.type;
                 panel1.Controls.Add(listItem);
                 listItem.Dock = DockStyle.Top;
             }

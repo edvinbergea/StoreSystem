@@ -12,6 +12,7 @@ namespace StoreSystem
 {
     public partial class ListItemAddDelivery : UserControl
     {
+        public string itemType { get; set; }
         public ListItemAddDelivery()
         {
             InitializeComponent();
@@ -24,14 +25,12 @@ namespace StoreSystem
         {
 
         }
-        public void SetName(string name)
-        {
-            NameLabel.Text = name;
-        }
-        public void SetId(string id)
-        {
-            IdLabel.Text = id;
-        }
+        public void SetName(string name) { NameLabel.Text = name; }
+        public string GetName() { return NameLabel.Text; }
+        public void SetId(string id) { IdLabel.Text = id; }
+        public string GetId() { return IdLabel.Text; }
+        public string GetCount() { return CountTextBox.Text; }
+
 
         private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {

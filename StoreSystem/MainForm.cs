@@ -61,7 +61,11 @@ namespace StoreSystem
             AddDeliveryForm deliveryPopup = new AddDeliveryForm(database.ConvertLists());
             var res = deliveryPopup.ShowDialog();
             if (res == DialogResult.OK) {
-                database.AddDelivery(deliveryPopup.itemList);   
+                Console.WriteLine("OK");
+                database.AddDelivery(deliveryPopup.itemList);
+                BooksDataGrid.Refresh();
+                GamesDataGrid.Refresh();
+                MoviesDataGrid.Refresh();
             }
         }
 
@@ -147,9 +151,8 @@ namespace StoreSystem
 
             var row = dgv.Rows[e.RowIndex];
             bool res = database.Validate(row.Cells);
-            Console.WriteLine(Convert.ToString(row.Cells["id"].Value));
             switch (Convert.ToString(row.Cells["type"].Value)){
-                case ("book"): database.bookList.FirstOrDefault(b => b.id == Convert.ToString(row.Cells["id"].Value)).isValid = res; Console.WriteLine("inne"); break;
+                case ("book"): database.bookList.FirstOrDefault(b => b.id == Convert.ToString(row.Cells["id"].Value)).isValid = res; break;
                 case ("game"): database.gameList.FirstOrDefault(b => b.id == Convert.ToString(row.Cells["id"].Value)).isValid = res; break;
                 case ("movie"): database.movieList.FirstOrDefault(b => b.id == Convert.ToString(row.Cells["id"].Value)).isValid = res; break;
             }
@@ -177,7 +180,7 @@ namespace StoreSystem
                 }
                 else dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = previousId;
             }
-            else if (e.ColumnIndex == dgv.Columns["playtime"].Index && !String.IsNullOrWhiteSpace(Convert.ToString(dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value)))
+            else if (dgv.Columns["playtime"] != null && e.ColumnIndex == dgv.Columns["playtime"].Index && !String.IsNullOrWhiteSpace(Convert.ToString(dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value)))
             {
                 dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value += " min";
             }
@@ -189,7 +192,6 @@ namespace StoreSystem
             TextBox tb = e.Control as TextBox;
             if (tb != null)
             {
-                Console.WriteLine("inside");
                 tb.KeyPress -= NumericTextBox_KeyPress;
 
                 if (dgv.CurrentCell.ColumnIndex == dgv.Columns["price"].Index ||
@@ -202,14 +204,11 @@ namespace StoreSystem
                     tb.KeyPress += NumericTextBox_KeyPress;
                     previousId = Int32.Parse(tb.Text);
                 }
-                else if(dgv.Columns["playtime"] != null)
+                else if(dgv.Columns["playtime"] != null && dgv.CurrentCell.ColumnIndex == dgv.Columns["playtime"].Index)
                 {
-                    if (dgv.CurrentCell.ColumnIndex == dgv.Columns["playtime"].Index)
-                    {
-                        tb.KeyPress += NumericTextBox_KeyPress;
-                        var substrings = tb.Text.Split(' ');
-                        tb.Text = substrings[0];
-                    }
+                    tb.KeyPress += NumericTextBox_KeyPress;
+                    var substrings = tb.Text.Split(' ');
+                    tb.Text = substrings[0];
                 }
             }
         }
