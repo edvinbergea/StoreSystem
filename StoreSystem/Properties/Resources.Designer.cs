@@ -61,17 +61,27 @@ namespace StoreSystem.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to name,price,author,genre,format,language,platform,play_time,quantity,type,id
-        ///Bello Gallico et Civili,449,Julius Caesar,Historia,Inbunden,Latin,null,null,0,book,0
-        ///How to Read a Book,149,Mortimer J. Adler,Kursliteratur,Pocket,null,null,null,0,book,1
-        ///Moby Dick,49,Herman Melville,Äventyr,Pocket,null,null,null,0,book,2
-        ///Great Gatsby,79,F. Scott Fitzgerald,Noir,E-Bok,null,null,null,0,book,3
-        ///House of Leaves,49,Mark Z. Danielewski,Skräck,null,null,null,null,0,book,4
-        ///Elden Ring,599,null,null,null,null,Playstatio [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to name,price,author,genre,format,language,platform,playtime,quantity,type,id
+        ///Bello Gallico et Civili,449,Julius Caesar,Historia,Inbunden,Latin,&quot; &quot;,&quot; &quot;,0,book,0
+        ///How to Read a Book,149,Mortimer J. Adler,Kursliteratur,Pocket,&quot; &quot;,&quot; &quot;,&quot; &quot;,0,book,1
+        ///Moby Dick,49,Herman Melville,Äventyr,Pocket,&quot; &quot;,&quot; &quot;,&quot; &quot;,0,book,2
+        ///Great Gatsby,79,F. Scott Fitzgerald,Noir,E-Bok,&quot; &quot;,&quot; &quot;,&quot; &quot;,0,book,3
+        ///House of Leaves,49,Mark Z. Danielewski,Skräck,&quot; &quot;,&quot; &quot;,&quot; &quot;,&quot; &quot;,0,book,4
+        ///Test 1,999,,,,,&quot; &quot;,&quot; &quot;,0,book,15
+        ///test 2,888,,,,,&quot; &quot;,&quot; &quot;,0,bo [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string database {
             get {
                 return ResourceManager.GetString("database", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string test {
+            get {
+                return ResourceManager.GetString("test", resourceCulture);
             }
         }
     }
