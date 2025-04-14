@@ -186,5 +186,10 @@ namespace StoreSystem
                 }
             }
         }
+
+        internal void AddDelivery(List<ListItemAddDelivery> itemList)
+        {
+            
+        }
     }
 }

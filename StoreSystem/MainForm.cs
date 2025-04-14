@@ -60,7 +60,9 @@ namespace StoreSystem
         {
             AddDeliveryForm deliveryPopup = new AddDeliveryForm(database.ConvertLists());
             var res = deliveryPopup.ShowDialog();
-            if (res == AcceptButton.DialogResult) { }
+            if (res == DialogResult.OK) {
+                database.AddDelivery(deliveryPopup.itemList);   
+            }
         }
 
 /*--------------------------------------------------------------------------------------------------------------------*/

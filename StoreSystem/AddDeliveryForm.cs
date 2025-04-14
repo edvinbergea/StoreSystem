@@ -13,11 +13,28 @@ namespace StoreSystem
     public partial class AddDeliveryForm : Form
     {
         private List<UnifiedProd> prodList;
+        public List<ListItemAddDelivery> itemList;
         public AddDeliveryForm(List<UnifiedProd> prodList)
         {
             this.prodList = prodList;
             InitializeComponent();
             PopulateList();
+            itemList = new List<ListItemAddDelivery>();
+
+            AddButton.Click += AddButton_Click;
+            CancelButton.Click += CancelButton_Click;
+        }
+
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void PopulateList() {
@@ -26,6 +43,7 @@ namespace StoreSystem
             foreach (var item in prodList)
             {
                 var listItem = new ListItemAddDelivery();
+                itemList.Add(listItem);
                 listItem.SetName(item.name);
                 listItem.SetId(item.id);
                 panel1.Controls.Add(listItem);
