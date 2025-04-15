@@ -13,6 +13,7 @@ namespace StoreSystem
     public partial class MainForm : Form
     {
         DB database;
+        CashRegister kassa;
         int bookTableLen = 0;
         int gameTableLen = 0;
         int movieTableLen = 0;
@@ -22,12 +23,13 @@ namespace StoreSystem
         {
             InitializeComponent();
             database = new DB();
+            kassa = new CashRegister(database.GetUnifiedList());
             BooksDataGrid.DataBindingComplete += BooksDataGrid_DataBindingComplete;
             GamesDataGrid.DataBindingComplete += GamesDataGrid_DataBindingComplete;
             MoviesDataGrid.DataBindingComplete += MoviesDataGrid_DataBindingComplete;
             KassaProdDataGrid.DataBindingComplete += KassaProdDataGrid_DataBindingComplete;
             PopulateLagerTable(database);
-            PopulateKassaTable(database.GetUnifiedList());
+            PopulateKassaTable();
 
             BookAddButton.Click += AddBook;
             GameAddButton.Click += AddGame;
@@ -57,28 +59,76 @@ namespace StoreSystem
 
             this.FormClosing += MainForm_FormClosing;
 
-            DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
-            buttonColumn.Name = "ActionColumn";
-            buttonColumn.HeaderText = "";
-            buttonColumn.Text = "Lägg till";
-            buttonColumn.UseColumnTextForButtonValue = true;
+            KassaProdDataGrid.CellContentClick += KassaProdDataGrid_CellContentClick;
 
-            KassaProdDataGrid.Columns.Add(buttonColumn);
+            tabControl1.SelectedIndexChanged += TabControl1_SelectedIndexChanged;
+
+            BuyButton.Click += BuyButton_Click;
         }
 
-        
+        private void BuyButton_Click(object sender, EventArgs e)
+        {
+            var list = kassa.Checkout();
+            database.AddPurchase(list);
+        }
 
-/*--------------------------------------------------------------------------------------------------------------------*/
+        private void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TabPage selectedTab = tabControl1.SelectedTab;
+            if (selectedTab == Kassa)
+            {
+                kassa.productList = database.GetUnifiedList();
+                KassaProdDataGrid.DataSource = kassa.productList;
+                
+            }
+            else if (selectedTab == Lager)
+            {
+                KassaProdDataGrid.DataSource = database.GetUnifiedList();
+                kassa.ClearCart();
+                UpdateTotalLabel();
+            }
+        }
+
+        private void UpdateTotalLabel()
+        {
+            TotalPriceLabel.Text = "Totalt: " + kassa.total + " kr";
+        }
+
+        private void KassaProdDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(kassa.AddToCart(KassaProdDataGrid.Rows[e.RowIndex].Cells["id"].Value.ToString()))
+            {
+                CartPanel.Controls.Add(kassa.cart.Last());
+                kassa.cart.Last().Dock = DockStyle.Top;
+                kassa.SetDeleteCartItemFunction((item) =>
+                {
+                    UpdateTotalLabel();
+                    CartPanel.Controls.Remove(item);
+                });
+                kassa.SetCountChanged(() =>
+                {
+                    UpdateTotalLabel();
+                });
+                UpdateTotalLabel();
+            }
+        }
+
+
+
+        /*--------------------------------------------------------------------------------------------------------------------*/
         private void AddDeliveryButton_Click(object sender, EventArgs e)
         {
             AddDeliveryForm deliveryPopup = new AddDeliveryForm(database.GetUnifiedList().ToList<UnifiedProd>());
             var res = deliveryPopup.ShowDialog();
             if (res == DialogResult.OK) {
                 Console.WriteLine("OK");
+                
                 database.AddDelivery(deliveryPopup.itemList);
+                database.UpdateUnifiedList();
                 BooksDataGrid.Refresh();
                 GamesDataGrid.Refresh();
                 MoviesDataGrid.Refresh();
+                KassaProdDataGrid.Refresh();
             }
         }
 
@@ -164,11 +214,13 @@ namespace StoreSystem
 
             var row = dgv.Rows[e.RowIndex];
             bool res = database.Validate(row.Cells);
+            
             switch (Convert.ToString(row.Cells["type"].Value)){
                 case ("book"): database.bookList.FirstOrDefault(b => b.id == Convert.ToString(row.Cells["id"].Value)).isValid = res; break;
                 case ("game"): database.gameList.FirstOrDefault(b => b.id == Convert.ToString(row.Cells["id"].Value)).isValid = res; break;
                 case ("movie"): database.movieList.FirstOrDefault(b => b.id == Convert.ToString(row.Cells["id"].Value)).isValid = res; break;
             }
+            database.UpdateUnifiedList();
             if (res)
             {
                 dgv.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;            
@@ -277,9 +329,14 @@ namespace StoreSystem
 
             ResizeGrid();
         }
-        private void PopulateKassaTable(BindingList<UnifiedProd> unifiedProds)
+        private void PopulateKassaTable()
         {
-            KassaProdDataGrid.DataSource = unifiedProds;
+            DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
+            buttonColumn.Name = "ActionColumn";
+            buttonColumn.HeaderText = "";
+            buttonColumn.Text = "Lägg till";
+            buttonColumn.UseColumnTextForButtonValue = true;
+            KassaProdDataGrid.Columns.Add(buttonColumn);
         }
 
         private void MoviesDataGrid_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)

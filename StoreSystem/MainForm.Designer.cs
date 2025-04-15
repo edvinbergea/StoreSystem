@@ -569,7 +569,7 @@
             this.TotalPriceLabel.Name = "TotalPriceLabel";
             this.TotalPriceLabel.Size = new System.Drawing.Size(128, 34);
             this.TotalPriceLabel.TabIndex = 0;
-            this.TotalPriceLabel.Text = "Totalt: 800 kr";
+            this.TotalPriceLabel.Text = "Totalt: 0 kr";
             this.TotalPriceLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // BuyButton
