@@ -18,6 +18,7 @@ namespace StoreSystem
         public BindingList<Game> gameList;
         public BindingList<Movie> movieList;
         public HashSet<int> occupiedIds;
+        BindingList<UnifiedProd> unifiedList = new BindingList<UnifiedProd>();
 
         public int uniqueId = 0;
 
@@ -28,16 +29,41 @@ namespace StoreSystem
             occupiedIds = new HashSet<int>();
 
             FillList();
+
+            bookList.ListChanged += UpdateUnifiedList;
+            gameList.ListChanged += UpdateUnifiedList;
+            movieList.ListChanged += UpdateUnifiedList;
         }
 
+        private void UpdateUnifiedList(object sender, ListChangedEventArgs e)
+        {
+            Console.WriteLine("updating unified list");
+            unifiedList.Clear();
+            foreach (var item in bookList)
+            {
+                if (item.isValid) unifiedList.Add(new UnifiedProd(item.id, item.name, item.price, item.author, item.genre, item.format, item.language, " ", " ", item.quantity, item.type));
+            }
+            foreach (var item in gameList)
+            {
+                if (item.isValid) unifiedList.Add(new UnifiedProd(item.id, item.name, item.price, " ", " ", " ", " ", item.platform, " ", item.quantity, item.type));
+            }
+            foreach (var item in movieList)
+            {
+                if (item.isValid) unifiedList.Add(new UnifiedProd(item.id, item.name, item.price, " ", " ", item.format, " ", " ", item.playtime, item.quantity, item.type));
+            }
+        }
+
+        public BindingList<UnifiedProd> GetUnifiedList() { return unifiedList; }
+        
         public void SaveData()
         {
+            foreach (Book book in bookList) { Console.WriteLine(book.name); }
             using (var writer = new StreamWriter("..\\..\\Resources\\database.csv"))
             {
                 using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
                 {
                     csv.Context.RegisterClassMap<UnifiedMap>();
-                    csv.WriteRecords(ConvertLists());
+                    csv.WriteRecords(unifiedList);
                 }
             }
         }
@@ -57,22 +83,6 @@ namespace StoreSystem
                 if (!item.isValid) return true;
             }
             return false;
-        }
-
-        public List<UnifiedProd> ConvertLists(){
-            List<UnifiedProd> unifiedList = new List<UnifiedProd>();
-            foreach (var item in bookList) { 
-                if(item.isValid) unifiedList.Add(new UnifiedProd(item.id, item.name, item.price, item.author, item.genre, item.format, item.language, " ", " ",item.quantity, item.type));
-            }
-            foreach (var item in gameList)
-            {
-                if (item.isValid) unifiedList.Add(new UnifiedProd(item.id, item.name, item.price, " ", " ", " ", " ", item.platform, " ", item.quantity, item.type));
-            }
-            foreach (var item in movieList)
-            {
-                if (item.isValid) unifiedList.Add(new UnifiedProd(item.id, item.name, item.price, " ", " ", item.format, " ", " ", item.playtime, item.quantity, item.type));
-            }
-            return unifiedList;
         }
 
         public void AppendBook(Book book)

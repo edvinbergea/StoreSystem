@@ -25,7 +25,9 @@ namespace StoreSystem
             BooksDataGrid.DataBindingComplete += BooksDataGrid_DataBindingComplete;
             GamesDataGrid.DataBindingComplete += GamesDataGrid_DataBindingComplete;
             MoviesDataGrid.DataBindingComplete += MoviesDataGrid_DataBindingComplete;
+            KassaProdDataGrid.DataBindingComplete += KassaProdDataGrid_DataBindingComplete;
             PopulateLagerTable(database);
+            PopulateKassaTable(database.GetUnifiedList());
 
             BookAddButton.Click += AddBook;
             GameAddButton.Click += AddGame;
@@ -54,11 +56,22 @@ namespace StoreSystem
             AddDeliveryButton.Click += AddDeliveryButton_Click;
 
             this.FormClosing += MainForm_FormClosing;
+
+            DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
+            buttonColumn.Name = "ActionColumn";
+            buttonColumn.HeaderText = "";
+            buttonColumn.Text = "Lägg till";
+            buttonColumn.UseColumnTextForButtonValue = true;
+
+            KassaProdDataGrid.Columns.Add(buttonColumn);
         }
+
+        
+
 /*--------------------------------------------------------------------------------------------------------------------*/
         private void AddDeliveryButton_Click(object sender, EventArgs e)
         {
-            AddDeliveryForm deliveryPopup = new AddDeliveryForm(database.ConvertLists());
+            AddDeliveryForm deliveryPopup = new AddDeliveryForm(database.GetUnifiedList().ToList<UnifiedProd>());
             var res = deliveryPopup.ShowDialog();
             if (res == DialogResult.OK) {
                 Console.WriteLine("OK");
@@ -264,6 +277,10 @@ namespace StoreSystem
 
             ResizeGrid();
         }
+        private void PopulateKassaTable(BindingList<UnifiedProd> unifiedProds)
+        {
+            KassaProdDataGrid.DataSource = unifiedProds;
+        }
 
         private void MoviesDataGrid_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
@@ -306,6 +323,23 @@ namespace StoreSystem
             dgv.Columns["quantity"].DisplayIndex = 7;
             dgv.Columns["type"].Visible = false;
             dgv.Columns["isValid"].Visible = false;
+        }
+
+        private void KassaProdDataGrid_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            var dgv = (DataGridView)sender;
+
+            dgv.Columns["id"].DisplayIndex = 0;
+            dgv.Columns["name"].DisplayIndex = 1;
+            dgv.Columns["price"].DisplayIndex = 2;
+            dgv.Columns["quantity"].DisplayIndex = 3;
+            dgv.Columns["author"].Visible = false;
+            dgv.Columns["genre"].Visible = false;
+            dgv.Columns["format"].Visible = false;
+            dgv.Columns["language"].Visible = false;
+            dgv.Columns["playtime"].Visible = false;
+            dgv.Columns["platform"].Visible = false;
+            dgv.Columns["type"].Visible = false;
         }
 
         private void ResizeGrid()

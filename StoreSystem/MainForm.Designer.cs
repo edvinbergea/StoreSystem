@@ -58,10 +58,9 @@
             this.Kassa = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.SearchBarKassa = new System.Windows.Forms.TextBox();
             this.Productpanel = new System.Windows.Forms.Panel();
+            this.KassaProdDataGrid = new System.Windows.Forms.DataGridView();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -94,7 +93,8 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
+            this.Productpanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.KassaProdDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -458,7 +458,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.tableLayoutPanel2);
+            this.splitContainer1.Panel1.Controls.Add(this.label1);
             // 
             // splitContainer1.Panel2
             // 
@@ -467,54 +467,37 @@
             this.splitContainer1.SplitterDistance = 35;
             this.splitContainer1.TabIndex = 0;
             // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.SearchBarKassa, 1, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(688, 33);
-            this.tableLayoutPanel2.TabIndex = 0;
-            // 
             // label1
             // 
-            this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("SansSerif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(338, 33);
+            this.label1.Size = new System.Drawing.Size(688, 33);
             this.label1.TabIndex = 0;
             this.label1.Text = "Produkter";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // SearchBarKassa
-            // 
-            this.SearchBarKassa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SearchBarKassa.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SearchBarKassa.Font = new System.Drawing.Font("SansSerif", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.SearchBarKassa.Location = new System.Drawing.Point(344, 0);
-            this.SearchBarKassa.Margin = new System.Windows.Forms.Padding(0);
-            this.SearchBarKassa.Multiline = true;
-            this.SearchBarKassa.Name = "SearchBarKassa";
-            this.SearchBarKassa.Size = new System.Drawing.Size(344, 33);
-            this.SearchBarKassa.TabIndex = 1;
-            // 
             // Productpanel
             // 
             this.Productpanel.AutoScroll = true;
+            this.Productpanel.Controls.Add(this.KassaProdDataGrid);
             this.Productpanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Productpanel.Location = new System.Drawing.Point(0, 0);
             this.Productpanel.Name = "Productpanel";
             this.Productpanel.Size = new System.Drawing.Size(688, 467);
             this.Productpanel.TabIndex = 0;
+            // 
+            // KassaProdDataGrid
+            // 
+            this.KassaProdDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.KassaProdDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.KassaProdDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.KassaProdDataGrid.Location = new System.Drawing.Point(0, 0);
+            this.KassaProdDataGrid.Name = "KassaProdDataGrid";
+            this.KassaProdDataGrid.ReadOnly = true;
+            this.KassaProdDataGrid.Size = new System.Drawing.Size(688, 467);
+            this.KassaProdDataGrid.TabIndex = 0;
             // 
             // splitContainer2
             // 
@@ -656,8 +639,8 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
+            this.Productpanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.KassaProdDataGrid)).EndInit();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -680,9 +663,6 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox SearchBarKassa;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.Label TotalPriceLabel;
@@ -716,6 +696,8 @@
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripButton AddDeliveryButton;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView KassaProdDataGrid;
     }
 }
 
