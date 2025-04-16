@@ -24,7 +24,33 @@ namespace StoreSystem
             this.InStock.Text = "/" + product.quantity;
 
             CountLabel.KeyPress += CountLabel_KeyPress;
+            CountLabel.KeyUp += CountLabel_KeyUp;
+            CountLabel.Leave += CountLabel_Leave;
+        }
 
+        private void CountLabel_Leave(object sender, EventArgs e)
+        {
+            CorrectLabelContent();
+        }
+        private void CorrectLabelContent()
+        {
+            if (CountLabel.Text == "0" || String.IsNullOrWhiteSpace(CountLabel.Text))
+            {
+                CountLabel.Text = "1";
+            }
+            else if (Int32.Parse(CountLabel.Text) > Int32.Parse(product.quantity))
+            {
+                CountLabel.Text = product.quantity;
+            }
+            TextboxChangedCallback?.Invoke();
+        }
+        private void CountLabel_KeyUp(object sender, KeyEventArgs e)
+        {
+            // Check if the key pressed is a digit key
+            if (e.KeyCode >= Keys.D0 && e.KeyCode <= Keys.D9 || e.KeyCode >= Keys.NumPad0 && e.KeyCode <= Keys.NumPad9)
+            {
+                CorrectLabelContent();
+            }
         }
 
         public void SetDeleteButtonClickFunc(Action buttonCallback)
@@ -43,18 +69,6 @@ namespace StoreSystem
             {
                 e.Handled = true;
             }
-            
-            else if(char.IsDigit(e.KeyChar) && Int32.Parse(CountLabel.Text) + e.KeyChar > Int32.Parse(product.quantity))
-            if (CountLabel.Text == "0" || String.IsNullOrWhiteSpace(CountLabel.Text))
-            {
-                CountLabel.Text = "1";
-            }
-            else if (Int32.Parse(CountLabel.Text) > Int32.Parse(product.quantity))
-            {
-                CountLabel.Text = product.quantity;
-            }
-            TextboxChangedCallback();
-            
         }
 
         public void SetNameLabel(string name)

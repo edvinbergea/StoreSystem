@@ -84,13 +84,17 @@ namespace StoreSystem
 
         internal List<UnifiedProd> Checkout()
         {
-            foreach(var item in cart)
+            if(cart.Count() == 0) { throw new Exception("Cart empty"); }
+            else
             {
-                item.product.quantity = (Int32.Parse(item.product.quantity) - Int32.Parse(item.GetCountLabel())).ToString();
+                foreach (var item in cart)
+                {
+                    item.product.quantity = (Int32.Parse(item.product.quantity) - Int32.Parse(item.GetCountLabel())).ToString();
 
+                }
+                ClearCart();
+                return productList.ToList();
             }
-            ClearCart();
-            return productList.ToList();
         }
     }
 }

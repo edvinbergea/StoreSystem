@@ -68,8 +68,12 @@ namespace StoreSystem
 
         private void BuyButton_Click(object sender, EventArgs e)
         {
-            var list = kassa.Checkout();
-            database.AddPurchase(list);
+            try {
+                var list = kassa.Checkout();
+                database.AddPurchase(list);
+                MessageBox.Show("Purchase made", " ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception) { }
         }
 
         private void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
