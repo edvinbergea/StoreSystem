@@ -18,6 +18,7 @@ namespace StoreSystem
         public BindingList<Game> gameList;
         public BindingList<Movie> movieList;
         public HashSet<int> occupiedIds;
+        BindingList<UnifiedProd> unifiedList = new BindingList<UnifiedProd>();
 
         public int uniqueId = 0;
 
@@ -30,14 +31,38 @@ namespace StoreSystem
             FillList();
         }
 
+        public void UpdateUnifiedList()
+        {
+            Console.WriteLine("updating unified list");
+            
+            foreach (var prod in bookList) { Console.WriteLine("Booklist: " + prod.name.ToString() + " " + prod.isValid.ToString()); }
+            unifiedList.Clear();
+            foreach (var item in bookList)
+            {
+                if (item.isValid) unifiedList.Add(new UnifiedProd(item.id, item.name, item.price, item.author, item.genre, item.format, item.language, " ", " ", item.quantity, item.type));
+            }
+            foreach (var item in gameList)
+            {
+                if (item.isValid) unifiedList.Add(new UnifiedProd(item.id, item.name, item.price, " ", " ", " ", " ", item.platform, " ", item.quantity, item.type));
+            }
+            foreach (var item in movieList)
+            {
+                if (item.isValid) unifiedList.Add(new UnifiedProd(item.id, item.name, item.price, " ", " ", item.format, " ", " ", item.playtime, item.quantity, item.type));
+            }
+            foreach (var prod in unifiedList) { Console.WriteLine("Unified: " + prod.name.ToString()); }
+        }
+
+        public BindingList<UnifiedProd> GetUnifiedList() { return unifiedList; }
+        
         public void SaveData()
         {
+            foreach (var prod in unifiedList) { Console.WriteLine(prod.name); }
             using (var writer = new StreamWriter("..\\..\\Resources\\database.csv"))
             {
                 using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
                 {
                     csv.Context.RegisterClassMap<UnifiedMap>();
-                    csv.WriteRecords(ConvertLists());
+                    csv.WriteRecords(unifiedList);
                 }
             }
         }
@@ -57,22 +82,6 @@ namespace StoreSystem
                 if (!item.isValid) return true;
             }
             return false;
-        }
-
-        public List<UnifiedProd> ConvertLists(){
-            List<UnifiedProd> unifiedList = new List<UnifiedProd>();
-            foreach (var item in bookList) { 
-                if(item.isValid) unifiedList.Add(new UnifiedProd(item.id, item.name, item.price, item.author, item.genre, item.format, item.language, " ", " ",item.quantity, item.type));
-            }
-            foreach (var item in gameList)
-            {
-                if (item.isValid) unifiedList.Add(new UnifiedProd(item.id, item.name, item.price, " ", " ", " ", " ", item.platform, " ", item.quantity, item.type));
-            }
-            foreach (var item in movieList)
-            {
-                if (item.isValid) unifiedList.Add(new UnifiedProd(item.id, item.name, item.price, " ", " ", item.format, " ", " ", item.playtime, item.quantity, item.type));
-            }
-            return unifiedList;
         }
 
         public void AppendBook(Book book)
@@ -163,21 +172,16 @@ namespace StoreSystem
                     foreach (var row in rows)
                     {
                         string type = row.type;
-
-                        Product product;
                         switch (type)
                         {
                             case ("book"): 
-                                product = new Book(row.id, row.name, row.price, row.author, row.genre, row.format, row.language, row.quantity, row.type);
-                                bookList.Add((Book)product);
+                                bookList.Add(new Book(row.id, row.name, row.price, row.author, row.genre, row.format, row.language, row.quantity, row.type));
                                 break;
                             case ("game"): 
-                                product = new Game(row.id, row.name, row.price, row.platform, row.quantity, row.type); 
-                                gameList.Add((Game)product);
+                                gameList.Add(new Game(row.id, row.name, row.price, row.platform, row.quantity, row.type));
                                 break;
                             case ("movie"): 
-                                product = new Movie(row.id, row.name, row.price, row.format, row.playtime, row.quantity, row.type); 
-                                movieList.Add((Movie)product);
+                                movieList.Add(new Movie(row.id, row.name, row.price, row.format, row.playtime, row.quantity, row.type));
                                 break;
                         };
                         if (Int32.Parse(row.id) == uniqueId) uniqueId++;
@@ -211,6 +215,36 @@ namespace StoreSystem
                         if (movie != null)
                         {
                             movie.quantity = (Int32.Parse(movie.quantity) + Int32.Parse(item.GetCount())).ToString();
+                        }
+                        break;
+                };
+            }
+        }
+
+        public void AddPurchase(List<UnifiedProd> prodList) {
+            foreach(UnifiedProd item in prodList)
+            {
+                switch (item.type)
+                {
+                    case ("book"):
+                        Book book = bookList.FirstOrDefault(b => b.id == item.id);
+                        if (book != null)
+                        {
+                            book.quantity = item.quantity;
+                        }
+                        break;
+                    case ("game"):
+                        Game game = gameList.FirstOrDefault(g => g.id == item.id);
+                        if (game != null)
+                        {
+                            game.quantity = item.quantity;
+                        }
+                        break;
+                    case ("movie"):
+                        Movie movie = movieList.FirstOrDefault(m => m.id == item.id);
+                        if (movie != null)
+                        {
+                            movie.quantity = item.quantity;
                         }
                         break;
                 };

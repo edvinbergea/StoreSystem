@@ -84,6 +84,7 @@
     <Compile Include="CartItem.Designer.cs">
       <DependentUpon>CartItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="CashRegister.cs" />
     <Compile Include="DB.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="ListItemAddDelivery.cs">
