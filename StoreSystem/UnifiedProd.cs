@@ -34,6 +34,7 @@ namespace StoreSystem
             quantity = Quantity;
             type = Type;
         }
+        public UnifiedProd() { }
     }
 
 }

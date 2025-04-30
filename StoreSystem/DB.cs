@@ -54,7 +54,7 @@ namespace StoreSystem
 
         public BindingList<UnifiedProd> GetUnifiedList() { return unifiedList; }
         
-        public void SaveData()
+        public void SaveData2()
         {
             foreach (var prod in unifiedList) { Console.WriteLine(prod.name); }
             using (var writer = new StreamWriter("..\\..\\Resources\\database.csv"))
@@ -65,6 +65,11 @@ namespace StoreSystem
                     csv.WriteRecords(unifiedList);
                 }
             }
+        }
+
+        public void SaveData() {
+            var csvHandler = new CsvHandler();
+            csvHandler.SaveProds(unifiedList.ToList());
         }
 
         public bool InvalidExcist()
@@ -161,7 +166,7 @@ namespace StoreSystem
             return true;
         }
 
-        private void FillList()
+        private void FillList2()
         {
             using (var reader = new StreamReader("..\\..\\Resources\\database.csv"))
             {
@@ -188,6 +193,27 @@ namespace StoreSystem
                         occupiedIds.Add(Int32.Parse(row.id));
                     }
                 }
+            }
+        }
+
+        private void FillList() {
+            var csvHandler = new CsvHandler();
+            var products = csvHandler.LoadProds();
+            foreach (var product in products) {
+                switch (product.type)
+                {
+                    case ("book"):
+                        bookList.Add(new Book(product.id, product.name, product.price, product.author, product.genre, product.format, product.language, product.quantity, product.type));
+                        break;
+                    case ("game"):
+                        gameList.Add(new Game(product.id, product.name, product.price, product.platform, product.quantity, product.type));
+                        break;
+                    case ("movie"):
+                        movieList.Add(new Movie(product.id, product.name, product.price, product.format, product.playtime, product.quantity, product.type));
+                        break;
+                }
+                if (Int32.Parse(product.id) == uniqueId) uniqueId++;
+                occupiedIds.Add(Int32.Parse(product.id));
             }
         }
 
