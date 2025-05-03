@@ -16,7 +16,7 @@ namespace StoreSystem
         public string _price;
         public string price { get => _price; set { if (_price != value) { _price = value; OnPropertyChanged(nameof(price)); } } }
         public string _quantity;
-        public string quantity { get => _quantity; set { if (_quantity != value) { _quantity = value; OnPropertyChanged(nameof(quantity)); } } }
+        public string stock { get => _quantity; set { if (_quantity != value) { _quantity = value; OnPropertyChanged(nameof(stock)); } } }
         public string _type;
         public string type { get => _type; set { if (_type != value) { _type = value; OnPropertyChanged(nameof(type)); } } }
         public string _id;

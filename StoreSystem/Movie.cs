@@ -18,7 +18,7 @@ namespace StoreSystem
             price = Price;
             format = Format;
             playtime = Playtime;
-            quantity = Quantity;
+            stock = Quantity;
             type = Type;
         }
     }

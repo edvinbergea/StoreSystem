@@ -21,7 +21,7 @@ namespace StoreSystem
             this.NameLabel.Text = product.name;
             this.IdLabel.Text = product.id;
             this.CountLabel.Text = "1";
-            this.InStock.Text = "/" + product.quantity;
+            this.InStock.Text = "/" + product.stock;
 
             CountLabel.KeyPress += CountLabel_KeyPress;
             CountLabel.KeyUp += CountLabel_KeyUp;
@@ -38,15 +38,14 @@ namespace StoreSystem
             {
                 CountLabel.Text = "1";
             }
-            else if (Int32.Parse(CountLabel.Text) > Int32.Parse(product.quantity))
+            else if (Int32.Parse(CountLabel.Text) > Int32.Parse(product.stock))
             {
-                CountLabel.Text = product.quantity;
+                CountLabel.Text = product.stock;
             }
             TextboxChangedCallback?.Invoke();
         }
         private void CountLabel_KeyUp(object sender, KeyEventArgs e)
         {
-            // Check if the key pressed is a digit key
             if (e.KeyCode >= Keys.D0 && e.KeyCode <= Keys.D9 || e.KeyCode >= Keys.NumPad0 && e.KeyCode <= Keys.NumPad9)
             {
                 CorrectLabelContent();
@@ -97,6 +96,11 @@ namespace StoreSystem
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void NameLabel_Click(object sender, EventArgs e)
         {
 
         }

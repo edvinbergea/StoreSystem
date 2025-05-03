@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.CountLabel = new System.Windows.Forms.TextBox();
-            this.DeleteButton = new System.Windows.Forms.Button();
-            this.NameLabel = new System.Windows.Forms.Label();
             this.IdLabel = new System.Windows.Forms.Label();
+            this.NameLabel = new System.Windows.Forms.Label();
+            this.DeleteButton = new System.Windows.Forms.Button();
+            this.CountLabel = new System.Windows.Forms.TextBox();
             this.InStock = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -45,7 +45,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 82F));
             this.tableLayoutPanel1.Controls.Add(this.IdLabel, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.NameLabel, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.DeleteButton, 4, 0);
@@ -59,40 +59,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(569, 40);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // CountLabel
-            // 
-            this.CountLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.CountLabel.Font = new System.Drawing.Font("SansSerif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.CountLabel.Location = new System.Drawing.Point(9, 8);
-            this.CountLabel.Margin = new System.Windows.Forms.Padding(5);
-            this.CountLabel.Name = "CountLabel";
-            this.CountLabel.Size = new System.Drawing.Size(23, 23);
-            this.CountLabel.TabIndex = 0;
-            this.CountLabel.Text = "5";
-            this.CountLabel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // DeleteButton
-            // 
-            this.DeleteButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DeleteButton.Location = new System.Drawing.Point(492, 6);
-            this.DeleteButton.Margin = new System.Windows.Forms.Padding(5);
-            this.DeleteButton.Name = "DeleteButton";
-            this.DeleteButton.Size = new System.Drawing.Size(71, 28);
-            this.DeleteButton.TabIndex = 5;
-            this.DeleteButton.Text = "Ta bort";
-            this.DeleteButton.UseVisualStyleBackColor = true;
-            // 
-            // NameLabel
-            // 
-            this.NameLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.NameLabel.Font = new System.Drawing.Font("SansSerif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.NameLabel.Location = new System.Drawing.Point(167, 1);
-            this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(316, 38);
-            this.NameLabel.TabIndex = 6;
-            this.NameLabel.Text = "Namn";
-            this.NameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // IdLabel
             // 
             this.IdLabel.AutoSize = true;
@@ -104,6 +70,41 @@
             this.IdLabel.TabIndex = 7;
             this.IdLabel.Text = "Id";
             this.IdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // NameLabel
+            // 
+            this.NameLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.NameLabel.Font = new System.Drawing.Font("SansSerif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.NameLabel.Location = new System.Drawing.Point(167, 1);
+            this.NameLabel.Name = "NameLabel";
+            this.NameLabel.Size = new System.Drawing.Size(314, 38);
+            this.NameLabel.TabIndex = 6;
+            this.NameLabel.Text = "Namn";
+            this.NameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.NameLabel.Click += new System.EventHandler(this.NameLabel_Click);
+            // 
+            // DeleteButton
+            // 
+            this.DeleteButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DeleteButton.Location = new System.Drawing.Point(490, 6);
+            this.DeleteButton.Margin = new System.Windows.Forms.Padding(5);
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.Size = new System.Drawing.Size(73, 28);
+            this.DeleteButton.TabIndex = 5;
+            this.DeleteButton.Text = "Ta bort";
+            this.DeleteButton.UseVisualStyleBackColor = true;
+            // 
+            // CountLabel
+            // 
+            this.CountLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CountLabel.Font = new System.Drawing.Font("SansSerif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.CountLabel.Location = new System.Drawing.Point(9, 8);
+            this.CountLabel.Margin = new System.Windows.Forms.Padding(5);
+            this.CountLabel.Name = "CountLabel";
+            this.CountLabel.Size = new System.Drawing.Size(23, 23);
+            this.CountLabel.TabIndex = 0;
+            this.CountLabel.Text = "5";
+            this.CountLabel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // InStock
             // 

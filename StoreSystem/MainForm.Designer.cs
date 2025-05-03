@@ -71,6 +71,7 @@
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.SyncButton = new System.Windows.Forms.ToolStripButton();
             this.tabControl1.SuspendLayout();
             this.Lager.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -404,7 +405,8 @@
             // 
             this.toolStrip1.GripMargin = new System.Windows.Forms.Padding(5);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.AddDeliveryButton});
+            this.AddDeliveryButton,
+            this.SyncButton});
             this.toolStrip1.Location = new System.Drawing.Point(3, 3);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(998, 25);
@@ -606,6 +608,15 @@
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(23, 23);
             // 
+            // SyncButton
+            // 
+            this.SyncButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.SyncButton.Image = ((System.Drawing.Image)(resources.GetObject("SyncButton.Image")));
+            this.SyncButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.SyncButton.Name = "SyncButton";
+            this.SyncButton.Size = new System.Drawing.Size(78, 22);
+            this.SyncButton.Text = "Synkronisera";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -614,6 +625,7 @@
             this.Controls.Add(this.tabControl1);
             this.Name = "MainForm";
             this.Text = "Affärssystem";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.Lager.ResumeLayout(false);
             this.Lager.PerformLayout();
@@ -698,6 +710,7 @@
         private System.Windows.Forms.ToolStripButton AddDeliveryButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView KassaProdDataGrid;
+        private System.Windows.Forms.ToolStripButton SyncButton;
     }
 }
 

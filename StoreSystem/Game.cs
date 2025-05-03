@@ -16,7 +16,7 @@ namespace StoreSystem
             name = Name;
             price = Price;
             platform = Platform;
-            quantity = Quantity;
+            stock = Quantity;
             type = Type;
         }
     }
