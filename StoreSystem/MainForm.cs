@@ -64,6 +64,13 @@ namespace StoreSystem
             tabControl1.SelectedIndexChanged += TabControl1_SelectedIndexChanged;
 
             BuyButton.Click += BuyButton_Click;
+
+            SyncButton.Click += SyncButton_Click;
+        }
+
+        private void SyncButton_Click(object sender, EventArgs e)
+        {
+            database.ReSync();
         }
 
         private void BuyButton_Click(object sender, EventArgs e)
@@ -245,7 +252,11 @@ namespace StoreSystem
                 if (int.TryParse(cellValue, out int newId))
                 {
                     if (!database.IsIdAvailable(newId))
+                    {
                         dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = previousId;
+                        
+                    } else Console.WriteLine(database.UnReserveId(previousId.ToString()));
+
                 }
                 else dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = previousId;
             }
@@ -264,7 +275,7 @@ namespace StoreSystem
                 tb.KeyPress -= NumericTextBox_KeyPress;
 
                 if (dgv.CurrentCell.ColumnIndex == dgv.Columns["price"].Index ||
-                    dgv.CurrentCell.ColumnIndex == dgv.Columns["quantity"].Index)
+                    dgv.CurrentCell.ColumnIndex == dgv.Columns["stock"].Index)
                 {
                     tb.KeyPress += NumericTextBox_KeyPress;
                 }
@@ -352,7 +363,7 @@ namespace StoreSystem
             dgv.Columns["price"].DisplayIndex = 2;
             dgv.Columns["format"].DisplayIndex = 3;
             dgv.Columns["playtime"].DisplayIndex = 4;
-            dgv.Columns["quantity"].DisplayIndex = 5;
+            dgv.Columns["stock"].DisplayIndex = 5;
             dgv.Columns["type"].Visible = false;
             dgv.Columns["isValid"].Visible = false;
         }
@@ -365,7 +376,7 @@ namespace StoreSystem
             dgv.Columns["name"].DisplayIndex = 1;
             dgv.Columns["price"].DisplayIndex = 2;
             dgv.Columns["platform"].DisplayIndex = 3;
-            dgv.Columns["quantity"].DisplayIndex = 4;
+            dgv.Columns["stock"].DisplayIndex = 4;
             dgv.Columns["type"].Visible = false;
             dgv.Columns["isValid"].Visible = false;
         }
@@ -381,7 +392,7 @@ namespace StoreSystem
             dgv.Columns["genre"].DisplayIndex = 4;
             dgv.Columns["format"].DisplayIndex = 5;
             dgv.Columns["language"].DisplayIndex = 6;
-            dgv.Columns["quantity"].DisplayIndex = 7;
+            dgv.Columns["stock"].DisplayIndex = 7;
             dgv.Columns["type"].Visible = false;
             dgv.Columns["isValid"].Visible = false;
         }
@@ -393,7 +404,7 @@ namespace StoreSystem
             dgv.Columns["id"].DisplayIndex = 0;
             dgv.Columns["name"].DisplayIndex = 1;
             dgv.Columns["price"].DisplayIndex = 2;
-            dgv.Columns["quantity"].DisplayIndex = 3;
+            dgv.Columns["stock"].DisplayIndex = 3;
             dgv.Columns["author"].Visible = false;
             dgv.Columns["genre"].Visible = false;
             dgv.Columns["format"].Visible = false;
@@ -420,6 +431,11 @@ namespace StoreSystem
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
         {
 
         }

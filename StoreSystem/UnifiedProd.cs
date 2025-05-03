@@ -16,11 +16,11 @@ namespace StoreSystem
         public string language { get; set; }
         public string platform { get; set; }
         public string playtime { get; set; }
-        public string quantity { get; set; }
+        public string stock { get; set; }
         public string type { get; set; }
         public string id { get; set; }
 
-        public UnifiedProd(string Id, string Name, string Price, string Author, string Genre, string Format, string Language, string Platform, string Playtime, string Quantity, string Type)
+        public UnifiedProd(string Id, string Name, string Price, string Author, string Genre, string Format, string Language, string Platform, string Playtime, string Stock, string Type)
         {
             id = Id;
             name = Name;
@@ -31,10 +31,22 @@ namespace StoreSystem
             language = Language;
             platform = Platform;
             playtime = Playtime;
-            quantity = Quantity;
+            stock = Stock;
             type = Type;
         }
-        public UnifiedProd() { }
+        public UnifiedProd() { 
+            id = "-1";
+            name = " ";
+            price = " ";
+            author = " ";
+            genre = " ";
+            format = " ";
+            language = " ";
+            platform = " ";
+            playtime = " ";
+            stock = " ";
+            type = " ";
+        }
     }
 
 }

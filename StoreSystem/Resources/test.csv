@@ -1,0 +1,16 @@
+name,price,author,genre,format,language,platform,playtime,stock,type,id
+Great Gatsby,79,F. Scott Fitzgerald,Noir,E-Bok, , , ,0,book,4
+House of Leaves,49,Mark Z. Danielewski,Skräck, , , , ,0,book,5
+How to Read a Book,149,Mortimer J. Adler,Kursliteratur,Pocket, , , ,4,book,2
+Moby Dick,49,Herman Melville,Äventyr,Pocket, , , ,4,book,3
+Bello Gallico et Civili,449,Julius Caesar,Historia,Inbunden,Latin, , ,3,book,1
+Elden Ring,599, , , , ,Playstation 5, ,0,game,6
+Demon's Souls,499, , , , ,Playstation 5, ,0,game,7
+Microsoft Flight Simulator,499, , , , ,PC, ,0,game,8
+Planescape Torment,99, , , , ,PC, ,0,game,9
+Disco Elysium,399, , , , ,PC, ,0,game,10
+Nyckeln till frihet,99, , ,DVD, , ,142 min,0,movie,11
+Gudfadern,99, , ,DVD, , ,152 min,0,movie,12
+Konungens återkomst,199, , ,Blu-Ray, , ,154 min,0,movie,13
+Pulp fiction,199, , ,Blu-Ray, , , ,0,movie,14
+Schindlers list,99, , ,DVD, , , ,0,movie,15

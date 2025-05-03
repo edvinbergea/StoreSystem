@@ -19,7 +19,7 @@ namespace StoreSystem
             Map(m => m.language).Index(5);
             Map(m => m.platform).Index(6);
             Map(m => m.playtime).Index(7);
-            Map(m => m.quantity).Index(8);
+            Map(m => m.stock).Index(8);
             Map(m => m.type).Index(9);
             Map(m => m.id).Index(10);
         }

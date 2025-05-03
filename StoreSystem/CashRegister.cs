@@ -23,7 +23,7 @@ namespace StoreSystem
             var product = productList.FirstOrDefault(x => x.id == id);
             Console.WriteLine(product);
             
-            if (product != null && product.quantity != "0" && cart.FirstOrDefault(x => x.GetIdLabel() == id) == null)
+            if (product != null && product.stock != "0" && cart.FirstOrDefault(x => x.GetIdLabel() == id) == null)
             {
                 productList.Remove(product);
                 var newCartEntry = new CartItem(product);
@@ -89,7 +89,7 @@ namespace StoreSystem
             {
                 foreach (var item in cart)
                 {
-                    item.product.quantity = (Int32.Parse(item.product.quantity) - Int32.Parse(item.GetCountLabel())).ToString();
+                    item.product.stock = (Int32.Parse(item.product.stock) - Int32.Parse(item.GetCountLabel())).ToString();
 
                 }
                 ClearCart();

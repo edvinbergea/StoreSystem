@@ -13,7 +13,7 @@ namespace StoreSystem
         public string format { get; set; }
         public string language { get; set; }
 
-        public Book(string Id, string Name, string Price, string Author, string Genre, string Format, string Language, string Quantity,string Type)
+        public Book(string Id, string Name, string Price, string Author, string Genre, string Format, string Language, string Stock,string Type)
         {
             id = Id;
             name = Name;
@@ -22,7 +22,7 @@ namespace StoreSystem
             genre = Genre;
             format = Format;
             language = Language;
-            quantity = Quantity;
+            stock = Stock;
             type = Type;
         }
     }

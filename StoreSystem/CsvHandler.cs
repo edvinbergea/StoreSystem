@@ -10,6 +10,7 @@ namespace StoreSystem
     internal class CsvHandler
     {
         private string csvPath = "..\\..\\Resources\\database.csv";
+        private string testPath = "..\\..\\Resources\\test.csv";
         public CsvHandler() { }
 
         private UnifiedProd ParseLIne(string[] header, string[] line) { 
@@ -65,7 +66,7 @@ namespace StoreSystem
                 foreach (var p in products)
                 {
                     var values = new List<string>();
-                    foreach (var prop in typeof(UnifiedProd).GetProperties())
+                    foreach (var prop in propArray)
                     {
                         var value = prop.GetValue(p);
                         if (value != null)
