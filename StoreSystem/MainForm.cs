@@ -23,7 +23,7 @@ namespace StoreSystem
         {
             InitializeComponent();
             database = new DB();
-            kassa = new CashRegister(database.GetUnifiedList());
+            kassa = new CashRegister(database.GetUnifiedList(), database);
             BooksDataGrid.DataBindingComplete += BooksDataGrid_DataBindingComplete;
             GamesDataGrid.DataBindingComplete += GamesDataGrid_DataBindingComplete;
             MoviesDataGrid.DataBindingComplete += MoviesDataGrid_DataBindingComplete;
@@ -65,22 +65,42 @@ namespace StoreSystem
 
             BuyButton.Click += BuyButton_Click;
 
-            SyncButton.Click += SyncButton_Click;
+            DownloadButton.Click += DownloadButton_Click;
+            UploadButton.Click += UploadButton_Click;
         }
 
-        private void SyncButton_Click(object sender, EventArgs e)
+        private void UploadButton_Click(object sender, EventArgs e)
         {
-            database.ReSync();
+            try { database.UploadData(); }
+            catch (Exception error)
+            {
+                MessageBox.Show("Error: " + error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void DownloadButton_Click(object sender, EventArgs e)
+        {
+            try { database.DownloadData(); }
+            catch (Exception error) {
+                MessageBox.Show("Error: " + error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void BuyButton_Click(object sender, EventArgs e)
         {
             try {
+                database.DownloadData();
                 var list = kassa.Checkout();
                 database.AddPurchase(list);
+                database.UploadData();
                 MessageBox.Show("Purchase made", " ", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception) { }
+            catch (Exception error) {
+                MessageBox.Show("Error: " + error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                kassa.ClearCart();
+            }
+            UpdateTotalLabel();
+            database.UpdateUnifiedList();
         }
 
         private void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -107,20 +127,23 @@ namespace StoreSystem
 
         private void KassaProdDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(kassa.AddToCart(KassaProdDataGrid.Rows[e.RowIndex].Cells["id"].Value.ToString()))
+            if (KassaProdDataGrid.Columns["ActionColumn"].Index == e.ColumnIndex)
             {
-                CartPanel.Controls.Add(kassa.cart.Last());
-                kassa.cart.Last().Dock = DockStyle.Top;
-                kassa.SetDeleteCartItemFunction((item) =>
+                if (kassa.AddToCart(KassaProdDataGrid.Rows[e.RowIndex].Cells["id"].Value.ToString()))
                 {
+                    CartPanel.Controls.Add(kassa.cart.Last());
+                    kassa.cart.Last().Dock = DockStyle.Top;
+                    kassa.SetDeleteCartItemFunction((item) =>
+                    {
+                        UpdateTotalLabel();
+                        CartPanel.Controls.Remove(item);
+                    });
+                    kassa.SetCountChanged(() =>
+                    {
+                        UpdateTotalLabel();
+                    });
                     UpdateTotalLabel();
-                    CartPanel.Controls.Remove(item);
-                });
-                kassa.SetCountChanged(() =>
-                {
-                    UpdateTotalLabel();
-                });
-                UpdateTotalLabel();
+                }
             }
         }
 
@@ -264,6 +287,7 @@ namespace StoreSystem
             {
                 dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value += " min";
             }
+            database.UpdateModifiedProds(dgv.Rows[e.RowIndex].Cells[dgv.Columns["id"].Index].Value.ToString());
         }
 /*--------------------------------------------------------------------------------------------------------------------*/
         private void DataGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)

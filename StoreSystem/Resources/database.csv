@@ -1,16 +1,16 @@
 name,price,author,genre,format,language,platform,playtime,stock,type,id
-Great Gatsby,39,F. Scott Fitzgerald,Noir,E-Bok, , , ,34,book,4
-House of Leaves,79,Mark Z. Danielewski,Skräck, , , , ,31,book,5
-How to Read a Book,39,Mortimer J. Adler,Kursliteratur,Pocket, , , ,19,book,2
-Moby Dick,29,Herman Melville,Äventyr,Pocket, , , ,12,book,3
-Bello Gallico et Civili,399,Julius Caesar,Historia,Inbunden,Latin, , ,22,book,1
-Elden Ring,459, , , , ,Playstation 5, ,6,game,6
-Demon's Souls,499, , , , ,Playstation 5, ,45,game,7
-Microsoft Flight Simulator,459, , , , ,PC, ,20,game,8
-Planescape Torment,259, , , , ,PC, ,29,game,9
-Disco Elysium,399, , , , ,PC, ,16,game,10
-Nyckeln till frihet,149, , ,DVD, , ,142 min,24,movie,11
-Gudfadern,149, , ,DVD, , ,152 min,24,movie,12
-Konungens återkomst,299, , ,Blu-Ray, , ,154 min,8,movie,13
-Pulp fiction,259, , ,Blu-Ray, , , ,21,movie,14
-Schindlers list,149, , ,DVD, , , ,6,movie,15
+Great Gatsby,19,F. Scott Fitzgerald,Noir,E-Bok, , , ,21,book,4
+House of Leaves,99,Mark Z. Danielewski,Skräck, , , , ,29,book,5
+How to Read a Book,49,Mortimer J. Adler,Kursliteratur,Pocket, , , ,43,book,2
+Moby Dick,39,Herman Melville,Äventyr,Pocket, , , ,0,book,3
+Bello Gallico et Civili,299,Julius Caesar,Historia,Inbunden,Latin, , ,24,book,1
+Elden Ring,499, , , , ,Playstation 5, ,39,game,6
+Demon's Souls,399, , , , ,Playstation 5, ,21,game,7
+Microsoft Flight Simulator,499, , , , ,PC, ,7,game,8
+Planescape Torment,299, , , , ,PC, ,30,game,9
+Disco Elysium,299, , , , ,PC, ,5,game,10
+Nyckeln till frihet,199, , ,DVD, , ,142 min,25,movie,11
+Gudfadern,199, , ,DVD, , ,152 min,10,movie,12
+Konungens återkomst,199, , ,Blu-Ray, , ,154 min,49,movie,13
+Pulp fiction,299, , ,Blu-Ray, , , ,47,movie,14
+Schindlers list,199, , ,DVD, , , ,32,movie,15

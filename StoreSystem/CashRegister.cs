@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.CodeDom;
 
 namespace StoreSystem
 {
@@ -13,10 +14,11 @@ namespace StoreSystem
         public List<CartItem> cart = new List<CartItem>();
         Action<CartItem> Delete;
         Action CountChanged;
+        private DB database;
         public string total { get; set; } = "0";
-        public CashRegister(BindingList<UnifiedProd> list) {
+        public CashRegister(BindingList<UnifiedProd> list, DB db) {
             productList = list;
-
+            database = db;
         }
         public bool AddToCart(string id)
         {
@@ -85,16 +87,31 @@ namespace StoreSystem
         internal List<UnifiedProd> Checkout()
         {
             if(cart.Count() == 0) { throw new Exception("Cart empty"); }
+            else if (FinalStockCheck()) { throw new Exception("Certain items, insufficient stock"); }
             else
             {
                 foreach (var item in cart)
                 {
                     item.product.stock = (Int32.Parse(item.product.stock) - Int32.Parse(item.GetCountLabel())).ToString();
-
+                    database.UpdateModifiedProds(item.product.id);
                 }
                 ClearCart();
                 return productList.ToList();
             }
+        }
+
+        private bool FinalStockCheck()
+        {
+            var list = database.GetUnifiedList().ToList<UnifiedProd>();
+            foreach (var item in cart)
+            {
+                var ustock = list.FirstOrDefault(x => x.id == item.GetIdLabel()).stock;
+                if (Int32.Parse(ustock) - Int32.Parse(item.GetCountLabel()) < 0)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

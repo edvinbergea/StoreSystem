@@ -55,6 +55,10 @@
             this.BookDeleteButton = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.AddDeliveryButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.DownloadButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.UploadButton = new System.Windows.Forms.ToolStripButton();
             this.Kassa = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -71,7 +75,6 @@
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.SyncButton = new System.Windows.Forms.ToolStripButton();
             this.tabControl1.SuspendLayout();
             this.Lager.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -406,7 +409,10 @@
             this.toolStrip1.GripMargin = new System.Windows.Forms.Padding(5);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AddDeliveryButton,
-            this.SyncButton});
+            this.toolStripSeparator1,
+            this.DownloadButton,
+            this.toolStripSeparator2,
+            this.UploadButton});
             this.toolStrip1.Location = new System.Drawing.Point(3, 3);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(998, 25);
@@ -421,6 +427,34 @@
             this.AddDeliveryButton.Name = "AddDeliveryButton";
             this.AddDeliveryButton.Size = new System.Drawing.Size(99, 22);
             this.AddDeliveryButton.Text = "Lägg till leverans";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // DownloadButton
+            // 
+            this.DownloadButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.DownloadButton.Image = ((System.Drawing.Image)(resources.GetObject("DownloadButton.Image")));
+            this.DownloadButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DownloadButton.Name = "DownloadButton";
+            this.DownloadButton.Size = new System.Drawing.Size(89, 22);
+            this.DownloadButton.Text = "Ladda ner data";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // UploadButton
+            // 
+            this.UploadButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.UploadButton.Image = ((System.Drawing.Image)(resources.GetObject("UploadButton.Image")));
+            this.UploadButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.UploadButton.Name = "UploadButton";
+            this.UploadButton.Size = new System.Drawing.Size(93, 22);
+            this.UploadButton.Text = "Ladda upp data";
             // 
             // Kassa
             // 
@@ -492,6 +526,8 @@
             // 
             // KassaProdDataGrid
             // 
+            this.KassaProdDataGrid.AllowUserToAddRows = false;
+            this.KassaProdDataGrid.AllowUserToDeleteRows = false;
             this.KassaProdDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.KassaProdDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.KassaProdDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -608,15 +644,6 @@
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(23, 23);
             // 
-            // SyncButton
-            // 
-            this.SyncButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.SyncButton.Image = ((System.Drawing.Image)(resources.GetObject("SyncButton.Image")));
-            this.SyncButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.SyncButton.Name = "SyncButton";
-            this.SyncButton.Size = new System.Drawing.Size(78, 22);
-            this.SyncButton.Text = "Synkronisera";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -710,7 +737,10 @@
         private System.Windows.Forms.ToolStripButton AddDeliveryButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView KassaProdDataGrid;
-        private System.Windows.Forms.ToolStripButton SyncButton;
+        private System.Windows.Forms.ToolStripButton DownloadButton;
+        private System.Windows.Forms.ToolStripButton UploadButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
 

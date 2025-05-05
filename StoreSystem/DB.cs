@@ -20,6 +20,7 @@ namespace StoreSystem
         public BindingList<Movie> movieList;
         public HashSet<int> occupiedIds;
         BindingList<UnifiedProd> unifiedList = new BindingList<UnifiedProd>();
+        public HashSet<string> modifiedProds = new HashSet<string>();
 
         public int uniqueId = 0;
 
@@ -32,11 +33,14 @@ namespace StoreSystem
             FillList();
         }
 
+        public void UpdateModifiedProds(string id)
+        {
+            if (!modifiedProds.Contains(id))
+                modifiedProds.Add(id);
+        }
+
         public void UpdateUnifiedList()
         {
-            Console.WriteLine("updating unified list");
-            
-            foreach (var prod in bookList) { Console.WriteLine("Booklist: " + prod.name.ToString() + " " + prod.isValid.ToString()); }
             unifiedList.Clear();
             foreach (var item in bookList)
             {
@@ -50,7 +54,6 @@ namespace StoreSystem
             {
                 if (item.isValid) unifiedList.Add(new UnifiedProd(item.id, item.name, item.price, " ", " ", item.format, " ", " ", item.playtime, item.stock, item.type));
             }
-            foreach (var prod in unifiedList) { Console.WriteLine("Unified: " + prod.name.ToString()); }
         }
 
         public BindingList<UnifiedProd> GetUnifiedList() { return unifiedList; }
@@ -224,10 +227,30 @@ namespace StoreSystem
             ApendMovie(new Movie(prod.id, prod.name, prod.price, prod.format, prod.playtime, prod.stock, prod.type));
         }
 
-        public void ReSync() {
+        public void DownloadData() {
             var xmlHandler = new XmlHandler();
-            var items = xmlHandler.GetXML();
-            MergeLists(items);
+            try {
+                var items = xmlHandler.GetXML();
+                MergeLists(items);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        internal void UploadData()
+        {
+            var xmlHandler = new XmlHandler();
+            try
+            {
+                xmlHandler.UploadXML(unifiedList.ToList(), modifiedProds);
+                modifiedProds.Clear();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error: " + e.Message);
+                throw e;
+            }
         }
 
         internal void AddDelivery(List<ListItemAddDelivery> itemList)
@@ -260,8 +283,9 @@ namespace StoreSystem
             }
         }
 
-        public void AddPurchase(List<UnifiedProd> prodList) {
-            foreach(UnifiedProd item in prodList)
+        public void AddPurchase(List<UnifiedProd> prodList)
+        {
+            foreach (UnifiedProd item in prodList)
             {
                 switch (item.type)
                 {
@@ -288,6 +312,7 @@ namespace StoreSystem
                         break;
                 };
             }
+            UpdateUnifiedList();
         }
     }
 }
